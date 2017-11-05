@@ -15,7 +15,9 @@ module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
-    get: [ ...restrict ],
+    get: [ authenticate('jwt'), function(hook){
+      hook.params = {query:{$populate:'guild'}};
+    } ],
     create: [ hashPassword() ],
     update: [ ...restrict, hashPassword() ],
     patch: [ ...restrict, hashPassword() ],

@@ -3,7 +3,7 @@
   <li ng-click="tab='chain'">Chains</li>
   <li ng-click="clearStorage()">Clear Storage {{clearStorage}}</li>
 </ul>
-{{profile}} {{what}}
+
 <div ng-if="tab=='chain'">
   <input ng-model="chain.title" placeholde="title"/>
   <select ng-model="chain.gumballs[0]" ng-options="gb._id as gb.name for gb in gumballs | orderBy:'name'"/>

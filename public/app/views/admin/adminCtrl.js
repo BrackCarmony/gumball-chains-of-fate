@@ -25,10 +25,5 @@ angular.module('gumball').controller('adminCtrl', function($scope, gumballSrvc, 
     localStorage.removeItem('chains');
   };
 
-  console.log('Why you no fire?');
-  userSrvc.getProfile().then(p=>{
-    console.log(p);
-    $scope.profile = p;
-  });
 
 });

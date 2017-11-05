@@ -1,0 +1,12 @@
+<div class="panel">
+  <div class="list" ng-repeat="(key, value) in sorted">
+    <h2 class="title">{{key}}</h2>
+    <div class="item" ng-repeat="chain in value">
+      <div style="display:flex; justify-content:flex-end;">
+        <gumball style="flex:1" ng-style="{background:chain.order==2?'grey':'palegreen'}" gumball="gumballDict[chain.gumballs[0]]"></gumball>
+        <gumball style="flex:1" ng-style="{background:chain.order==2?'palegreen':'grey'}" gumball="gumballDict[chain.gumballs[1]]"></gumball>
+      </div>
+      <button class="float-button" ng-click="addChain(chain)">Earn Chain</button>
+    </div>
+  </div>
+</div>

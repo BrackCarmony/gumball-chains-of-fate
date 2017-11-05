@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="/app/main.css">
     <link rel="stylesheet" href="/app/components/gumball/gumball.css">
   </head>
   <body ng-controller="userCtrl">
 
     <div ng-if="user">
       <nav>
-        <a ui-sref="guild">Guild</a>
         <a ui-sref="gumballs">Gumballs</a>
         <a ui-sref="chains">Chains</a>
+        <a ui-sref="guild">Guild</a>
       </nav>
       <ui-view></ui-view>
     </div>
 
-    <!-- <div ng-show="!user"> -->
-    <div>
+    <div ng-show="!user">
       Please login
       <input ng-model="email" type="email" placeholder="email" />
       <input ng-model="password" type"password" placeholder="password"/>
@@ -36,10 +36,13 @@
     <script src="app/services/gumballSrvc.js" charset="utf-8"></script>
     <script src="app/services/chainSrvc.js" charset="utf-8"></script>
     <script src="app/services/userSrvc.js" charset="utf-8"></script>
+    <script src="app/services/guildSrvc.js" charset="utf-8"></script>
 
     <script src="app/views/gumballs/gumballsCtrl.js" charset="utf-8"></script>
     <script src="app/views/chains/chainsCtrl.js" charset="utf-8"></script>
+    <script src="app/views/guild/guildCtrl.js" charset="utf-8"></script>
     <script src="app/views/admin/adminCtrl.js" charset="utf-8"></script>
+    <script src="app/views/compare/compareCtrl.js" charset="utf-8"></script>
 
     <script src="app/components/gumball/gumball.js" charset="utf-8"></script>
   </body>

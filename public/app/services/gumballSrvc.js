@@ -17,7 +17,7 @@ angular.module('gumball').service('gumballSrvc', function($http, $q){
         localStorage.setItem('gumballs', JSON.stringify(gumballs));
         return gumballs;
       }).catch(err=>{
-        console.log(err);
+        console.error(err);
       });
     }
 
@@ -26,9 +26,7 @@ angular.module('gumball').service('gumballSrvc', function($http, $q){
   };
 
   this.createGumball = function(gumball){
-    console.log('creating ', gumball);
     return $http.post('/api/gumball', gumball).then(resp=>{
-      console.log(resp);
       return resp.data;
     });
   };

@@ -1,0 +1,31 @@
+<div class="panel" ng-if ="user.guild">
+  <div class="list">
+    <h2>Guild Info</h2>
+    {{ user.guild.name }}
+  </div>
+  <div class="list">
+    <h2>Memebers</h2>
+    <div ui-sref="compare({_id:member._id})" class="item" ng-repeat="member in members">
+      {{member.name}} Gumballs: {{member.gumballs ? member.gumballs.length: '?'}}
+    </div>
+  </div>
+  <div class="list">
+    <h2>Profile Info</h2>
+    <input ng-model="user.name" ng-change="updateUser(user)" />
+    <button ng-click="user.guild=null"> Leave Guild</button>
+  </div>
+</div>
+<div class="panel" ng-hide="user.guild">
+  <div>
+  Search Existing Guilds <input type="text" ng-model="guildSearch" ng-change="searchGuild()">
+  <div class="list">
+  <div class="item" ng-repeat="guild in guilds">{{guild.name}} <button ng-click="joinGuild(guild)">Join</button></div>
+
+  <br>
+
+  </div>
+  <div>
+    Register new guild
+    <input type="text" ng-model="newGuildName" placeholder="Name"/> <button ng-click="registerGuild()">Register</button>
+  </div>
+</div>

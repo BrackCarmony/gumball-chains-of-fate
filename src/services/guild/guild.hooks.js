@@ -1,9 +1,17 @@
 
-
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [function(hook){
+      console.log(hook.params.query);
+      if (hook.params.query.search){
+        let search = hook.params.query.search;
+        delete hook.params.query.search;
+        hook.params.query.name = new RegExp(search, 'i');
+      }
+      console.log(hook.params.query);
+      return hook;
+    }],
     get: [],
     create: [],
     update: [],

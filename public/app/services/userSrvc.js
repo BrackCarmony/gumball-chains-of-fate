@@ -5,27 +5,43 @@ angular.module('gumball').service('userSrvc', function($http, $q){
       email,
       password
     }).then(resp=>{
-      console.log(resp);
+
       localStorage.setItem('token', resp.data.accessToken);
-      localStorage.setItem('basicUser', JSON.stringify(Base64.decode(resp.data.accessToken.split('.')[1])));
+      $http.defaults.headers.common.Authorization = resp.data.accessToken;
+      let decoded = Base64.decode(resp.data.accessToken.split('.')[1]);
+      decoded = decoded.slice(0,decoded.length-1);
+
+      localStorage.setItem('basicUser',decoded);
       return resp.data;
+    }).catch(err=>{
+      return $http.post('/users', {
+        email,
+        password
+      }).then(resp=>{
+        return this.login(email, password);
+      }).catch(err=>{
+        console.error(err);
+      });
     });
   };
 
   this.getUser = function(){
-    return $q.when(localStorage.getItem('token'));
+    try{
+      let basicUser = JSON.parse(localStorage.getItem('basicUser'));
+
+      return $http.get('/users/'+basicUser.userId).then(resp=>resp.data).catch(err=>console.error(err));
+    }catch(err){
+      console.error(err);
+      return $q.when(null);
+    }
   };
 
+  this.updateUser = function(user){
+    localStorage.setItem('user', JSON.stringify(user));
+    return $http.patch('/users/'+user._id, user).then(resp=>resp.data);
+  };
 
-
-  this.getProfile = function(){
-    console.log('Hmmm');
-    let token = localStorage.getItem('token');
-    console.log(token);
-    let tokenAry = token.split('.');
-
-    $http.defaults.headers.common.Authorization = token;
-    return $http.get('/users').then(e=>e.data)
-      .catch(e=>console.error(e));
+  this.getUserById = function(userid){
+    return $http.get('/users/'+userid).then(resp=>resp.data).catch(err=>console.error(err));
   };
 });

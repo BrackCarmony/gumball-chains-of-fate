@@ -42,6 +42,7 @@
     "feathers-hooks": "^2.1.2",
     "feathers-hooks-common": "^3.10.0",
     "feathers-mongodb": "^2.9.1",
+    "feathers-mongodb-fuzzy-search": "^1.1.1",
     "feathers-mongoose": "^5.1.2",
     "feathers-rest": "^1.8.1",
     "feathers-socketio": "^2.0.1",

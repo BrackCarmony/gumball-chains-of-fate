@@ -9,6 +9,7 @@ module.exports = function (app) {
     password: { type: String },
     googleId: { type: String },
     facebookId: { type: String },
+    name: { type: String },
     gumballs:[{type:mongooseClient.Schema.Types.ObjectId, ref:'gumball'}],
     chains:[{type:mongooseClient.Schema.Types.ObjectId, ref:'chain'}],
     guild:{type:mongooseClient.Schema.Types.ObjectId, ref:'guild'}

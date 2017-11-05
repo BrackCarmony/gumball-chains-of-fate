@@ -1,5 +1,5 @@
 angular.module('gumball').config(function($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/gumballs');
 
   $stateProvider.state('home', {
     url:'/',
@@ -16,11 +16,14 @@ angular.module('gumball').config(function($stateProvider, $urlRouterProvider){
     url:'/admin',
     templateUrl:'app/views/admin/admin.html',
     controller:'adminCtrl'
-  })
-    .state('guild', {
-      url:'/guild',
-      templateUrl:'app/views/guild/guild.html',
-      controller:'adminCtrl'
-    });
+  }).state('guild', {
+    url:'/guild',
+    templateUrl:'app/views/guild/guild.html',
+    controller:'guildCtrl'
+  }).state('compare', {
+    url:'/compare/:_id',
+    templateUrl:'app/views/compare/compare.html',
+    controller:'compareCtrl'
+  });
 
 });

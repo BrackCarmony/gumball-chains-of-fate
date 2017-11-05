@@ -1,30 +1,35 @@
-angular.module('gumball').controller('gumballsCtrl', function($scope, gumballSrvc){
+angular.module('gumball').controller('gumballsCtrl', function($scope, gumballSrvc, userSrvc){
   gumballSrvc.getGumballs().then(gb=>{
     $scope.gumballs = gb;
     sortGbs();
   });
 
-  $scope.user = localStorage.getItem('user');
-
-  if (!$scope.user) $scope.user = {gbs:[]};
-  else $scope.user = JSON.parse($scope.user);
+  userSrvc.getUser().then(user=>{
+    $scope.user=user;
+    sortGbs();
+  });
 
   $scope.addGumball = function(gb){
-    $scope.user.gbs.push(gb._id);
+    $scope.user.gumballs.push(gb._id);
     sortGbs();
+    userSrvc.updateUser($scope.user);
   };
+
   $scope.removeGumball = function(gb){
-    let index = $scope.user.gbs.indexOf(gb._id);
+    let index = $scope.user.gumballs.indexOf(gb._id);
     if (index!=-1){
-      $scope.user.gbs.splice(index, 1);
+      $scope.user.gumballs.splice(index, 1);
     }
     sortGbs();
+    userSrvc.updateUser($scope.user);
   };
 
   function sortGbs(){
-    localStorage.setItem('user', JSON.stringify($scope.user));
+    if (!$scope.user || !$scope.user.gumballs){
+      return $scope.all = $scope.gumballs;
+    }
     let ans = $scope.gumballs.reduce((prev, cur)=>{
-      if ($scope.user.gbs.indexOf(cur._id)>-1){
+      if ($scope.user.gumballs.indexOf(cur._id)>-1){
         prev[0].push(cur);
       }else{
         prev[1].push(cur);
@@ -33,8 +38,6 @@ angular.module('gumball').controller('gumballsCtrl', function($scope, gumballSrv
     },[[],[]]);
     $scope.all = ans[1];
     $scope.my = ans[0];
-
-
   }
 
 
