@@ -6,10 +6,12 @@ body, html{
 .panel{
   padding:25px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .list{
+  flex-wrap: wrap;
   padding:20px;
   margin: 10px;
   background-color:#ccc;
