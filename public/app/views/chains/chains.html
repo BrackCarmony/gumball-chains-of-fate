@@ -1,0 +1,23 @@
+<input ng-model="chain.title" placeholde="title"/>
+<select ng-model="chain.gumballs[0]" ng-options="gb._id as gb.name for gb in gumballs | orderBy:'name'"/>
+</select>
+<select ng-model="chain.gumballs[1]" ng-options="gb._id as gb.name for gb in gumballs | orderBy:'name'"/>
+</select>
+<input ng-model="chain.reward" placeholde="title"/>
+<select ng-model="chain.category"/>
+<option>Gold</option>
+<option>Stats</option>
+<option>Gems</option>
+<option>Pots</option>
+<option>Gold Pots</option>
+<option>Other</option>
+</select>
+<button ng-click="createChain(chain);chains.push(chain);chain = {category:chain.category, gumballs:[]};"> Create Chain</button>
+
+<div ng-repeat="chain in chains">
+  {{chain.title}} | {{chain.reward}} | {{chain.category}} |
+  <div style="display:flex"> 
+    <gumball gumball="gumballDict[chain.gumballs[0]]"></gumball>
+    <gumball gumball="gumballDict[chain.gumballs[1]]"></gumball>
+  </div>
+</div>

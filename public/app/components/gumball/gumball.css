@@ -1,0 +1,13 @@
+gumball{
+  display:flex;
+}
+
+
+
+gumball .picture{
+  background-size: contain;
+  background-position: center;
+  min-width: 50px;
+  min-height: 50px;
+  background-repeat: no-repeat;
+}

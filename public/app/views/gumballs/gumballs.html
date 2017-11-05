@@ -1,0 +1,14 @@
+<div style="display:flex">
+  <div class="list">
+    <h1> Not My Gumballs </h1>
+    <div  ng-repeat="gb in all">
+      <gumball gumball="gb"></gumball> <button ng-click="addGumball(gb)"> Add </button>
+    </div>
+  </div>
+  <div class="list">
+    <h1>My Gumballs</h1>
+    <div  ng-repeat="gb in my">
+      <gumball gumball="gb"></gumball> <button ng-click="removeGumball(gb)"> Remove </button>
+    </div>
+  </div>
+</div>

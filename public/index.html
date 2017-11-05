@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="gumball">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/app/components/gumball/gumball.css">
+  </head>
+  <body ng-controller="userCtrl">
+
+    <div ng-if="user">
+      <nav>
+        <a ui-sref="guild">Guild</a>
+        <a ui-sref="gumballs">Gumballs</a>
+        <a ui-sref="chains">Chains</a>
+      </nav>
+      <ui-view></ui-view>
+    </div>
+
+    <!-- <div ng-show="!user"> -->
+    <div>
+      Please login
+      <input ng-model="email" type="email" placeholder="email" />
+      <input ng-model="password" type"password" placeholder="password"/>
+      <button ng-click="login(email, password)">Login</button>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.4/jsrsasign-all-min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" charset="utf-8"></script>
+    <script src="app/app.js" charset="utf-8"></script>
+    <script src="app/routes.js" charset="utf-8"></script>
+    <script src="app/userCtrl.js" charset="utf-8"></script>
+
+    <script src="app/services/gumballSrvc.js" charset="utf-8"></script>
+    <script src="app/services/chainSrvc.js" charset="utf-8"></script>
+    <script src="app/services/userSrvc.js" charset="utf-8"></script>
+
+    <script src="app/views/gumballs/gumballsCtrl.js" charset="utf-8"></script>
+    <script src="app/views/chains/chainsCtrl.js" charset="utf-8"></script>
+    <script src="app/views/admin/adminCtrl.js" charset="utf-8"></script>
+
+    <script src="app/components/gumball/gumball.js" charset="utf-8"></script>
+  </body>
+</html>
