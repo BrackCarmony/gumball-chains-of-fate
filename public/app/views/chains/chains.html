@@ -1,6 +1,9 @@
 <div class="panel">
   <div class="list">
-    <h2>Unearned Chains <input class="match-input" type="text" ng-model="filter" placeholder="filter"></h2>
+    <h2>
+      Unearned Chains </br>
+      <input class="match-input" type="text" ng-model="filter" placeholder="filter">
+    </h2>
     <div class="item" ng-repeat="chain in unearned | filter:filter">
       {{chain.title}} | {{chain.reward}} | {{chain.category}} |
       <div style="display:flex">

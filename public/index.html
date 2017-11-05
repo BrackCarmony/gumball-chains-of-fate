@@ -17,10 +17,16 @@
       <ui-view></ui-view>
     </div>
 
-    <div ng-show="!user">
-      Please login
-      <input ng-model="email" type="email" placeholder="email" />
-      <input ng-model="password" type="password" placeholder="password"/>
+    <div ng-show="!user" class="list" style="width:500px;position:absolute;top:0;bottom:0;right:0;left:0;margin:auto;">
+      <h1>Gumball Chain of Fate Helper</h1>
+      <p>
+        Let you and your guild keep track of what gumballs and chains you have completed.  Making it easier to communicate what chains would help both particpants.
+      </p>
+      <p>
+        First select the gumballs you have.  Then select the chains you have already completed.  Finally select your guild, then compare your list with other members.
+      </p>
+      <input class="item" ng-model="email" type="email" placeholder="email" />
+      <input class="item" ng-model="password" type="password" placeholder="password"/>
       <button ng-click="login(email, password)">Login</button>
     </div>
 

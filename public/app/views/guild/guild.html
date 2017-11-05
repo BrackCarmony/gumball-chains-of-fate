@@ -4,14 +4,15 @@
     {{ user.guild.name }}
   </div>
   <div class="list">
-    <h2>Memebers</h2>
+    <h2>Guild Members</h2>
     <div ui-sref="compare({_id:member._id})" class="item" ng-repeat="member in members">
-      {{member.name}} Gumballs: {{member.gumballs ? member.gumballs.length: '?'}}
+      {{member.name?member.name:'Unkown Member'}}'s Gumballs ({{member.gumballs ? member.gumballs.length: '?'}}) Compare
     </div>
   </div>
   <div class="list">
     <h2>Profile Info</h2>
-    <input ng-model="user.name" ng-change="updateUser(user)" />
+    Display Name: <input ng-model="user.name" ng-change="updateUser(user)" />
+    <br/>
     <button ng-click="user.guild=null"> Leave Guild</button>
   </div>
 </div>

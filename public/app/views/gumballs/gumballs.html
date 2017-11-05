@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="list">
-    <h1> Unearned Gumballs <input class="match-input" type="text" ng-model="filter" placeholder="filter"></h1>
+    <h1> Unearned Gumballs </br> <input class="match-input" type="text" ng-model="filter" placeholder="filter"></h1>
     <div class="item" ng-repeat="gb in all | filter:filter">
       <gumball gumball="gb"></gumball> <button class="float-button" ng-click="addGumball(gb)"> Add </button>
     </div>
