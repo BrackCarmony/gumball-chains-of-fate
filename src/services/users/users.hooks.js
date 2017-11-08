@@ -26,10 +26,13 @@ module.exports = {
 
   after: {
     all: [
-      commonHooks.when(
-        hook => hook.params.provider,
-        commonHooks.discard('password')
-      )
+      (hook)=>{
+        console.log(hook.result);
+      },
+      commonHooks.discard('password'),
+      (hook)=>{
+        console.log(hook.result);
+      },
     ],
     find: [],
     get: [],
