@@ -16,7 +16,8 @@ module.exports = {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt'), function(hook){
-      hook.params = {query:{$populate:'guild'}};
+      console.log(hook.params);
+      hook.params = Object.assign(hook.params, {query:{$populate:'guild'}});
     } ],
     create: [ hashPassword() ],
     update: [ ...restrict, hashPassword() ],
@@ -26,7 +27,14 @@ module.exports = {
 
   after: {
     all: [
-      commonHooks.discard('password'),
+      (hook)=>{
+        console.log(hook.params);
+        console.log(Object.keys(hook));
+      },
+      commonHooks.when(
+        hook => hook.params.provider,
+        commonHooks.discard('password')
+      )
     ],
     find: [],
     get: [],
