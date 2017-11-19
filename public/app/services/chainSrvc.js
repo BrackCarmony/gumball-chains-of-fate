@@ -10,7 +10,7 @@ angular.module('gumball').service('chainSrvc', function($http, $q){
       old = (new Date().getTime() - date.getTime())/1000/60/60/24 > 1;
     }
 
-    if (!chains){
+    if (!chains || old){
       let a = a=>{
         return a.data.data;
       };
