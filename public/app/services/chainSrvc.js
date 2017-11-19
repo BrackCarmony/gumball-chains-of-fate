@@ -3,6 +3,13 @@ angular.module('gumball').service('chainSrvc', function($http, $q){
   this.getChains = function(page=1){
 
     let chains = localStorage.getItem('chains');
+    let date = localStorage.getItem('chains_date');
+    let old = true;
+    if (date){
+      date = new Date(date);
+      old = (new Date().getTime() - date.getTime())/1000/60/60/24 > 1;
+    }
+
     if (!chains){
       let a = a=>{
         return a.data.data;
@@ -15,6 +22,7 @@ angular.module('gumball').service('chainSrvc', function($http, $q){
         let chains = [...resp[0], ...resp[1], ...resp[2], ...resp[3]];
         allChains = chains;
         localStorage.setItem('chains', JSON.stringify(chains));
+        localStorage.setItem('chains_date', JSON.stringify(new Date()));
         return chains;
       }).catch(err=>{
         console.error(err);

@@ -3,8 +3,14 @@ angular.module('gumball').service('gumballSrvc', function($http, $q){
 
     let gumballs = localStorage.getItem('gumballs');
     gumballs = JSON.parse(gumballs);
-    if (!gumballs || !gumballs.length){
+    let date = localStorage.getItem('gumballs_date');
+    let old = true;
+    if (date){
+      date = new Date(date);
+      old = (new Date().getTime() - date.getTime())/1000/60/60/24 > 1;
+    }
 
+    if (!gumballs || !gumballs.length || old){
       let a = a=>{
         return a.data.data;
       };
@@ -15,6 +21,7 @@ angular.module('gumball').service('gumballSrvc', function($http, $q){
         $http.get('/api/gumball?$limit=50&$skip=150').then(a)]).then(resp=>{
         let gumballs = [...resp[0], ...resp[1], ...resp[2], ...resp[3]];
         localStorage.setItem('gumballs', JSON.stringify(gumballs));
+        localStorage.setItem('gumballs_date', JSON.stringify(new Date()));
         return gumballs;
       }).catch(err=>{
         console.error(err);
